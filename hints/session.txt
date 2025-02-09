@@ -1,0 +1,4 @@
+r command-prompt -I "#S" { rename-session "%%" }
+x confirm-before -y -p "kill-session #S? (y/n)" kill-session
+n display-popup -E -S fg=colour141 -T " Create New Session (CTRL-C to quit) " -b rounded -h 7 -s fg=colour189 -w 50 "printf \"\\033[38;5;141m------------------------------------------------\\033[0m\\n%s\\n\" \"Session Name:\" && read \"name?> \" && { tmux has-session -t \$name 2> /dev/null 2> /dev/null || tmux new-session -d -s \$name && tmux switch-client -t \$name }"
+s display-popup -E -S fg=colour141 -T " Switch Session (CTRL-C to quit) " -b rounded -h 7 -s fg=colour189 -w 50 "printf \"\\033[38;5;141m------------------------------------------------\\033[0m\\n%s\\n\" \"Session Name:\" && read \"name?> \" && { tmux has-session -t \$name 2> /dev/null 2> /dev/null || tmux new-session -d -s \$name && tmux switch-client -t \$name }"

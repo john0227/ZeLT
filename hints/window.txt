@@ -1,0 +1,23 @@
+w     choose-tree -w
+r     command-prompt -I "#W" { rename-window "%%" }
+x     confirm-before -y -p "kill-window #W? (y/n)" kill-window
+n     new-window -c "#{pane_current_path}"
+0     select-window -t 0
+1     select-window -t 1
+2     select-window -t 2
+3     select-window -t 3
+4     select-window -t 4
+5     select-window -t 5
+6     select-window -t 6
+7     select-window -t 7
+8     select-window -t 8
+9     select-window -t 9
+h     select-window -t "{previous}"
+l     select-window -t "{next}"
+Left  select-window -t "{previous}"
+Right select-window -t "{next}"
+*     set-window-option synchronize-panes
+\\    split-window -h -c "#{pane_current_path}"
+|     split-window -v -c "#{pane_current_path}"
+[     swap-window -d -t "{previous}"
+]     swap-window -d -t "{next}"
