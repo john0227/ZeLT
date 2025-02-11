@@ -24,7 +24,7 @@ Up    select-pane -U
 Down  select-pane -D
 Left  select-pane -L
 Right select-pane -R
-[     swap-pane -s "{left-of}"
-]     swap-pane -s "{right-of}"
+\[     swap-pane -s "{left-of}"
+\]     swap-pane -s "{right-of}"
 \{    swap-pane -U
 \}    swap-pane -D

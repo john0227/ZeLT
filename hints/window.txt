@@ -16,8 +16,8 @@ h     select-window -t "{previous}"
 l     select-window -t "{next}"
 Left  select-window -t "{previous}"
 Right select-window -t "{next}"
-*     set-window-option synchronize-panes
+\*     set-window-option synchronize-panes
 \\    split-window -h -c "#{pane_current_path}"
-|     split-window -v -c "#{pane_current_path}"
-[     swap-window -d -t "{previous}"
-]     swap-window -d -t "{next}"
+\|     split-window -v -c "#{pane_current_path}"
+\[     swap-window -d -t "{previous}"
+\]     swap-window -d -t "{next}"
