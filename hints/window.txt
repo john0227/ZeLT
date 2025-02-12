@@ -2,7 +2,6 @@ w     choose-tree -w
 r     command-prompt -I "#W" { rename-window "%%" }
 x     confirm-before -y -p "kill-window #W? (y/n)" kill-window
 c     new-window -c "#{pane_current_path}"
-n     new-window -c "#{pane_current_path}"
 0     select-window -t 0
 1     select-window -t 1
 2     select-window -t 2
