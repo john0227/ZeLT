@@ -26,3 +26,7 @@ tmux bind -T prefix "$HOOK_KEY" "run-shell $HOOK"
 # Run hook whenever this file is run
 $HOOK
 
+# Add support for tmux-mode-indicator
+EMPTY_PROMPT="${CWD}/scripts/mode_indicator.sh"
+tmux set -gq @mode_indicator_prefix_prompt "$(echo " #(${CWD}/scripts/mode_indicator.sh) ")"
+
