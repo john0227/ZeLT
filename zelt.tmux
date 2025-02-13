@@ -3,7 +3,7 @@
 CWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 tmux source "${CWD}/options.conf"
-tmux source "${CWD}/keybinds.conf"
+tmux run-shell "${CWD}/keybinds.conf"
 
 # Update keybind to show hints if user set it on
 SHOW_PANE_HINT=$(tmux show-option -gqv @zelt_show_hint_pane)
