@@ -3,9 +3,16 @@
 # List all sessions
 function list_sessions() {
     local -r current_session="$(tmux display -p "#S")"
+
     # TODO: get sessions to filter
-    local -r filter="scratch"
-    tmux list-sessions -F "#S #{session_activity}" -f "#{!=:#S,$filter}" | sort -k2,2 -n | awk '{ print $1 }'
+    local filter="scratch"
+    if [[ $action != "kill" ]]; then
+        filter="$filter|$current_session"
+    fi
+    tmux list-sessions -F "#S #{session_activity}" |
+        grep -Ev "$filter" |
+        sort -k2,2 -n |
+        awk '{ print $1 }'
 }
 
 # fzf popup for user to choose session (or input a new one)
@@ -22,7 +29,7 @@ function session_popup() {
 # If the session user gives does not exist, create and switch
 function switch_session() {
     local title="$1"
-    if [[ -z $title ]]; then
+    if [[ -z "$title" ]]; then
         title="Switch Session"
     fi
 
@@ -59,7 +66,7 @@ function kill_session() {
 function move_pane() {
     local -r title="Select Session to Move Pane"
 
-    session="$(session_popup "title")"
+    session="$(session_popup "$title")"
 
     # If provided session is empty or equal to current, NOOP
     local -r current_session="$(tmux display -p "#S")"
@@ -84,7 +91,7 @@ function move_pane() {
 function move_window() {
     local -r title="Select Session to Move Window"
 
-    session="$(session_popup "title")"
+    session="$(session_popup "$title")"
 
     # If provided session is empty or equal to current, NOOP
     local -r current_session="$(tmux display -p "#S")"
@@ -107,7 +114,7 @@ function move_window() {
 function link_window() {
     local -r title="Select Session to Link Window"
 
-    session="$(session_popup "title")"
+    session="$(session_popup "$title")"
 
     # If provided session is empty or equal to current, NOOP
     local -r current_session="$(tmux display -p "#S")"
@@ -122,6 +129,7 @@ function link_window() {
         tmux switch-client -t "$session" && tmux link-window -t "$session"
     fi
 }
+
 action=$1
 case "${action}" in
     switch)      switch_session ;;
