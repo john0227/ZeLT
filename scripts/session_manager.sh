@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
+# List all sessions
 function list_sessions() {
     local -r current_session="$(tmux display -p "#S")"
     # TODO: get sessions to filter
     local -r filter="scratch"
-    tmux list-sessions -F "#S" -f "#{!=:#S,$filter}"
+    tmux list-sessions -F "#S #{session_activity}" -f "#{!=:#S,$filter}" | sort -k2,2 -n | awk '{ print $1 }'
 }
 
 # fzf popup for user to choose session (or input a new one)
