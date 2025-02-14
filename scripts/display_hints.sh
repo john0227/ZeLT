@@ -16,6 +16,9 @@ MENU_ITEMS=$(awk '
     print "!"title"!", $1, "!"key_cmd"!"
 }' "${ROOT}/hints/${MODE}.txt" | tr '!\n' "' ")
 
-CMD="tmux display-menu -x 0 -y S $MENU_ITEMS"
-eval $CMD
+MENU_X="$(tmux show-option -gqv @zelt_hint_menu_x)"
+MENU_Y="$(tmux show-option -gqv @zelt_hint_menu_y)"
+
+DISPLAY_MENU="tmux display-menu -x $MENU_X -y $MENU_Y $MENU_ITEMS"
+eval $DISPLAY_MENU
 

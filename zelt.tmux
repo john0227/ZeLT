@@ -9,6 +9,8 @@ tmux run-shell "${CWD}/keybinds.conf"
 ${CWD}/scripts/keybind_hook.sh
 
 # Add support for tmux-mode-indicator
-EMPTY_PROMPT="${CWD}/scripts/mode_indicator.sh"
-tmux set -gq @mode_indicator_prefix_prompt "$(echo " #(${CWD}/scripts/mode_indicator.sh) ")"
+TMUX_MODE_ENABLED="$(tmux show-option -gqv @zelt_enable_mode_indicator)"
+if [[ "$TMUX_MODE_ENABLED" = "on" ]]; then
+    tmux set -gq @mode_indicator_prefix_prompt "$(echo "#(${CWD}/scripts/mode_indicator.sh)")"
+fi
 

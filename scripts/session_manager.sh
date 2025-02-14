@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 
-# List all sessions
+# List all sessions except user defined sessions to filter
 function list_sessions() {
     local -r current_session="$(tmux display -p "#S")"
 
-    # TODO: get sessions to filter
-    local filter="scratch"
+    local filter="$(tmux show-option -gqv @zelt_filtered_sessions | tr ',' '|')"
+    # Filter current session, unless user wants to kill a session
     if [[ $action != "kill" ]]; then
         filter="$filter|$current_session"
     fi
-    tmux list-sessions -F "#S #{session_activity}" |
+    filter=" ($(sed -E 's/^\|//g' <<< "$filter"))$"
+
+    tmux list-sessions -F "#{session_activity} #S" |
         grep -Ev "$filter" |
-        sort -k2,2 -n |
-        awk '{ print $1 }'
+        sort -k1,1 -n |
+        awk '{ print $2 }'
 }
 
 # fzf popup for user to choose session (or input a new one)
