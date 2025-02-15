@@ -2,17 +2,70 @@
 
 A `tmux` plugin to create modal keybinds like `Zellij`.
 
-**Pane Mode**
+## Modes
+
+### Pane Mode
 
 ![Pane Mode](./screenshots/zelt_pane_status.png)
 
-**Window Mode**
+<details>
+<summary>List of keybinds under pane mode</summary>
+
+| Key           | Action                                      |
+| ------------- | ------------------------------------------- |
+| w             | Change current pane to window               |
+| x             | Kill current pane                           |
+| q             | Display pane indices                        |
+| z             | Zoom pane                                   |
+| M             | Move pane to another session                |
+| 0...9         | Select pane with given index                |
+| hjkl<br>arrow | Move pane                                   |
+| HJKL          | Resize pane<br>Left/Right: 20<br>Up/Down: 7 |
+| []            | Swap pane (left/right)                      |
+| {}            | Swap pane (up/down)                         |
+
+</details>
+
+### Window Mode
 
 ![Window Mode](./screenshots/zelt_window_status.png)
 
-**Session Mode**
+<details>
+<summary>List of keybinds under window mode</summary>
+
+| Key              | Action                              |
+| ---------------- | ----------------------------------- |
+| w                | `tmux choose-tree -w`               |
+| r                | Rename window                       |
+| x                | Kill/Unlink window                  |
+| c                | Create new window at CWD            |
+| L                | Link window to another session      |
+| M                | Move window to another session      |
+| 0...9            | Select window with given index      |
+| hl<br>Left,Right | Select window                       |
+| *                | Synchronize panes in current window |
+| \\               | Split window horizontally           |
+| \|               | Split window vertically             |
+| []               | Swap window (left/right)            |
+
+</details>
+
+### Session Mode
 
 ![Session Mode](./screenshots/zelt_session_status.png)
+
+<details>
+<summary>List of keybinds under session mode</summary>
+
+| Key | Action                                                                                    |
+| --- | ----------------------------------------------------------------------------------------- |
+| r   | Rename current session                                                                    |
+| x   | Kill current session                                                                      |
+| X   | Kill session by name                                                                      |
+| c   | Create new session<br>If session with given name exists, attach to it instead             |
+| s   | Switch to another session<br>If session with given name does not exist, create and attach |
+
+</details>
 
 ## Keybind Hint Menu
 
