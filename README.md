@@ -65,6 +65,9 @@ A `tmux` plugin to create modal keybinds like `Zellij`.
 | c   | Create new session<br>If session with given name exists, attach to it instead             |
 | s   | Switch to another session<br>If session with given name does not exist, create and attach |
 
+> [!NOTE]  
+> "create" and "switch" are functionally equivalent
+
 </details>
 
 ## Keybind Hint Menu
