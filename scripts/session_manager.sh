@@ -24,7 +24,7 @@ function session_popup() {
     local -r res=$(echo "$all_sessions" |
         fzf --tmux=center,60,15 --print-query --tac --border-label=" $title " --border-label-pos 5 |
         tail -n1)
-    echo "$res"
+    echo "$res" | xargs
 }
 
 # Switch to another session
